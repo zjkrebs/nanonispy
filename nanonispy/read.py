@@ -402,6 +402,7 @@ class Spec(NanonisFile):
         column_names = f.readline().strip('\n').split('\t')
         f.close()
         header_lines = len(self.header) + 4
+        header_lines = 20
         specdata = np.genfromtxt(self.fname, delimiter='\t', skip_header=header_lines)
 
         for i, name in enumerate(column_names):
