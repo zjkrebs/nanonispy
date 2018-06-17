@@ -398,11 +398,12 @@ class Spec(NanonisFile):
         f = open(self.fname, 'r')
         f.seek(self.byte_offset)
         data_dict = dict()
-
         column_names = f.readline().strip('\n').split('\t')
         f.close()
-        header_lines = len(self.header) + 4
-        header_lines = 20
+        f = open(self.fname, 'r')
+        ff = f.readlines()
+        header_lines = ff.index('[DATA]\n') + 2
+        f.close()
         specdata = np.genfromtxt(self.fname, delimiter='\t', skip_header=header_lines)
 
         for i, name in enumerate(column_names):
